@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jow Ga Kung Fu South Africa — Sifu Raymond Keung</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+SC:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.cdnfonts.com/css/canela-text-trial" rel="stylesheet">
+
+  <style>
+    :root {
+      --black:       #080808;
+      --deep:        #0f0c0c;
+      --surface:     #161010;
+      --panel:       #1c1515;
+      --border:      #2e2020;
+      --gold:        #9C7A2A;
+      --gold-light:  #e8b85a;
+      --gold-dim:    #9a7032;
+      --red:         #8B1E1E;
+      --red-bright:  #cc2828;
+      --text:        #f0e8dc;
+      --text-muted:  #c8b89a;
+      --text-faint:  #8a7a68;
+      --white:       #f8f0e4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.35;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    .display {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .chinese {
+      font-family: 'Noto Serif SC', serif;
+    }
+    .gold { color: var(--gold); }
+    .red  { color: var(--red-bright); }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4vw;
+      height: 68px;
+      background: linear-gradient(180deg, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.85) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,151,58,0.15);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo .chinese-mark {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.4rem;
+      color: var(--red-bright);
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* hamburger */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-toggle span {
+      display: block; width: 24px; height: 1.5px;
+      background: var(--gold); margin: 5px 0;
+      transition: all 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.4) 40%, rgba(8,8,8,0.75) 100%),
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139,26,26,0.18) 0%, transparent 70%),
+        url('photo-training.jpg') center center / cover no-repeat;
+    }
+
+    /* Decorative vertical lines */
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-lines::before,
+    .hero-lines::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent 0%, rgba(200,151,58,0.2) 30%, rgba(200,151,58,0.2) 70%, transparent 100%);
+    }
+    .hero-lines::before { left: 12vw; }
+    .hero-lines::after  { right: 12vw; }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 120px 4vw 80px;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+
+    .hero-chinese {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--red-bright);
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+      text-shadow: 0 0 60px rgba(176,32,32,0.4);
+    }
+
+.hero-title {
+  font-family: 'Canela Text Trial', serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.02;
+  margin-bottom: 1.25rem;
+}
+
+
+.hero-subtitle {
+  font-family: 'Canela Text Trial', serif;
+  font-weight: 500;
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8F6E24;
+  margin-bottom: 2.5rem;
+}
+
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem auto;
+      opacity: 0.8;
+      animation: fadeUp 1s 1.1s forwards;
+    }
+    .hero-divider::before,
+    .hero-divider::after {
+      content: '';
+      height: 1px;
+      width: 80px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim));
+    }
+    .hero-divider::after {
+      background: linear-gradient(90deg, var(--gold-dim), transparent);
+    }
+    .hero-divider-icon {
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+.hero-lineage {
+  font-family: 'Canela Text Trial', serif;
+  font-weight: 500;
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #8F6E24;
+  opacity: 0.85;
+  margin-bottom: 3rem;
+}
+
+.hero-tagline {
+  font-size: 1rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 3rem;
+}
+
+    .hero-cta {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1s 1.4s forwards;
+    }
+
+    .btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      border: 1px solid var(--gold);
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 30px rgba(200,151,58,0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(200,151,58,0.15);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 1s 1.8s forwards;
+    }
+    .hero-scroll span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, var(--gold-dim), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ─── SECTION SCAFFOLDING ─── */
+    section {
+      position: relative;
+      padding: 100px 4vw;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .section-divider-line {
+      height: 1px;
+      width: 60px;
+      background: var(--gold-dim);
+    }
+    .section-divider-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    /* ─── ABOUT JOW GA ─── */
+    #about {
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-frame {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      aspect-ratio: 3/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .about-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(200,151,58,0.2);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .about-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      filter: sepia(0.2) contrast(1.1);
+    }
+
+    .placeholder-img {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--text-faint);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .placeholder-img .ph-icon {
+      font-size: 3rem;
+      color: var(--border);
+    }
+
+    .corner-ornament {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: var(--gold-dim);
+      border-style: solid;
+    }
+    .corner-ornament.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .corner-ornament.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .corner-ornament.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .corner-ornament.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    .lineage-chain {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .lineage-chain::before {
+      content: 'LINEAGE';
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      background: var(--panel);
+      padding: 0 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+    }
+
+    .lineage-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .lineage-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .lineage-list li:last-child { border-bottom: none; }
+
+    .lineage-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      color: var(--gold-dim);
+      min-width: 1.5rem;
+    }
+
+    .lineage-name { color: var(--text); flex: 1; }
+    .lineage-note { font-size: 0.82rem; color: var(--text-faint); font-style: italic; }
+
+    /* Highlight current Sifu */
+    .lineage-list li.current .lineage-name { color: var(--gold); font-weight: 600; }
+
+    /* ─── SIFU SECTION ─── */
+    #sifu {
+      background: var(--black);
+    }
+
+    .sifu-layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 5vw;
+      align-items: start;
+    }
+
+    .sifu-photo {
+      position: relative;
+    }
+
+    .sifu-photo-frame {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      aspect-ratio: 2/3;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sifu-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(0.15) contrast(1.1);
+    }
+
+    .sifu-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(0deg, rgba(8,8,8,0.95) 0%, transparent 100%);
+      padding: 2rem 1.5rem 1rem;
+    }
+    .sifu-caption h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 0.08em;
+    }
+    .sifu-caption p {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .sifu-content blockquote {
+      position: relative;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--text);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      border-left: 2px solid var(--gold);
+      background: rgba(200,151,58,0.04);
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      font-style: normal;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.15em;
+      color: var(--gold-dim);
+    }
+
+    .sifu-content p {
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+    }
+
+    .sifu-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 2.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .stat-box {
+      background: var(--panel);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    /* ─── CLASSES ─── */
+    #classes {
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+    }
+
+    .classes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      margin-bottom: 4rem;
+    }
+
+    .class-card {
+      background: var(--panel);
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .class-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--red);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .class-card:hover::before { opacity: 1; }
+    .class-card:hover { background: var(--surface); }
+
+    .class-card-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 0.8rem;
+    }
+
+    .class-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .class-card .chinese-subtitle {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1rem;
+      color: var(--gold-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .class-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .class-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .class-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+    }
+
+    /* Syllabus accordion */
+    .syllabus-wrapper {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .syllabus-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.8rem;
+    }
+
+    .syllabus-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .syllabus-group h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 0.5rem;
+    }
+
+    .syllabus-group ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--text-faint);
+      line-height: 1.9;
+    }
+
+    .syllabus-group ul li::before {
+      content: '— ';
+      color: var(--border);
+    }
+
+    /* Schedule */
+    .schedule-bar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .schedule-info h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .schedule-info p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .schedule-info a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ─── FAQ ─── */
+    #faq {
+      background: var(--black);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .faq-item {
+      background: var(--panel);
+      padding: 2rem 2.5rem;
+      border-left: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .faq-item:hover {
+      border-left-color: var(--gold-dim);
+      background: var(--surface);
+    }
+
+    .faq-q {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-a {
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      line-height: 1.7;
+    }
+
+    /* ─── GALLERY ─── */
+    #gallery {
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 220px 180px;
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .gallery-item {
+      background: var(--panel);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s, filter 0.4s;
+      filter: sepia(0.3) contrast(1.1) brightness(0.85);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: sepia(0.1) contrast(1.15) brightness(1);
+    }
+
+    .gallery-item:nth-child(1) { grid-column: span 4; }
+    .gallery-item:nth-child(2) { grid-column: span 5; }
+    .gallery-item:nth-child(3) { grid-column: span 3; }
+    .gallery-item:nth-child(4) { grid-column: span 3; }
+    .gallery-item:nth-child(5) { grid-column: span 4; }
+    .gallery-item:nth-child(6) { grid-column: span 5; }
+
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--border);
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ─── MERCH ─── */
+    #merch {
+      background: var(--black);
+    }
+
+    .merch-intro {
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    .merch-intro p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .merch-card {
+      background: var(--panel);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .merch-card:hover { background: var(--surface); }
+
+    .merch-img {
+      aspect-ratio: 1;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .merch-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: sepia(0.2) contrast(1.1);
+      transition: transform 0.5s;
+    }
+
+    .merch-card:hover .merch-img img { transform: scale(1.04); }
+
+    .merch-icon {
+      font-size: 3.5rem;
+      opacity: 0.15;
+    }
+
+    .merch-ph-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%; transform: translateX(-50%);
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      white-space: nowrap;
+    }
+
+    .merch-info {
+      padding: 1.5rem;
+    }
+
+    .merch-cat {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      margin-bottom: 0.4rem;
+    }
+
+    .merch-name {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .merch-desc {
+      font-size: 0.9rem;
+      color: var(--text-faint);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .merch-enquire {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-dim);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .merch-enquire:hover {
+      color: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .contact-detail-list li {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .contact-detail-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-detail-content strong {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-detail-content a,
+    .contact-detail-content span {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .contact-detail-content a:hover { color: var(--gold); }
+
+    .contact-form-area {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .contact-form-area::before {
+      content: 'GET IN TOUCH';
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      background: var(--panel);
+      padding: 0 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 14px;
+      font-family: 'Crimson Pro', serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.25s;
+      resize: vertical;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold-dim);
+    }
+
+    .form-group textarea { min-height: 100px; }
+
+    .form-group select option { background: var(--surface); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 3rem 4vw;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-logo .chinese-mark {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 2rem;
+      color: var(--red-bright);
+      opacity: 0.6;
+    }
+
+    .footer-logo-text {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      line-height: 1.5;
+    }
+
+    .footer-meta {
+      font-size: 0.82rem;
+      color: var(--text-faint);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .footer-fed {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 0.8; transform: scaleY(1.2); }
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── ORNAMENTAL ELEMENTS ─── */
+    .gold-rule {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 30%, var(--gold-dim) 70%, transparent 100%);
+      margin: 3rem 0;
+    }
+
+    .chinese-watermark {
+      position: absolute;
+      right: 4vw;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Noto Serif SC', serif;
+      font-size: 14vw;
+      color: rgba(200,151,58,0.03);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ─── MOBILE NAV ─── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(8,8,8,0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        z-index: 850;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 0.9rem; letter-spacing: 0.2em; }
+      .nav-toggle { display: block; z-index: 901; }
+
+      .about-grid,
+      .sifu-layout,
+      .classes-grid,
+      .faq-grid,
+      .merch-grid,
+      .contact-layout { grid-template-columns: 1fr; }
+
+      .sifu-layout { grid-template-columns: 1fr; }
+      .sifu-photo-frame { aspect-ratio: 3/2; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 180px);
+      }
+      .gallery-item { grid-column: span 1 !important; }
+
+      .hero-lines { display: none; }
+      .chinese-watermark { display: none; }
+
+      .sifu-stats { grid-template-columns: repeat(3,1fr); }
+
+      .syllabus-cols { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════════ -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <img src="logo-dark.png" alt="Jow Ga Kung Fu South Africa" style="height:44px;width:auto;display:block;" />
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About Jow Ga</a></li>
+    <li><a href="#sifu">Sifu Raymond</a></li>
+    <li><a href="#classes">Classes</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#merch">Merch</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <!-- Emblem watermark -->
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding-right:8vw;pointer-events:none;z-index:1;">
+    <img src="emblem.png" alt="" style="width:min(420px,45vw);opacity:0.07;filter:brightness(2);" />
+  </div>
+  <div class="hero-content">
+    <p class="hero-lineage">Fifth Generation Lineage · Jow Biu Lineage · Est. South Africa 2003</p>
+    <div class="hero-chinese">中外周家</div>
+    <h1 class="hero-title display">Jow Ga<br>Kung Fu</h1>
+    <p class="hero-subtitle">South Africa</p>
+    <div class="hero-divider"><span class="hero-divider-icon">✦</span></div>
+    <p class="hero-tagline">
+      Traditional Chinese Kung Fu forged from the legacy of the Five Tigers of Jow Ga — 
+      combining the power of Hung Gar, the swift footwork of Choy Gar, and the knowledge of Northern Shaolin.
+    </p>
+    <div class="hero-cta">
+      <a href="#classes" class="btn btn-primary">Discover the Art</a>
+      <a href="#contact" class="btn btn-outline">Enquire Now</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT JOW GA ═══════════════════════════════════════════════ -->
+<section id="about">
+  <div class="chinese-watermark">拳</div>
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">The Art</p>
+      <h2 class="section-title display">About Jow Ga<br>Kung Fu</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          Jow Ga — <span class="chinese">周家拳</span>, meaning <em>Jow Family Boxing</em> — is a rare and powerful form of Chinese martial art 
+          founded by <strong>Jow Lung</strong>, born in Guangdong province in 1891. It is known by the phrase 
+          <em>Hung Tao Choy Mei</em> — "Hung's Head and Choy's Tail" — reflecting its synthesis of two great systems.
+        </p>
+        <p>
+          Jow Lung's journey took him from his uncle's Hung Gar teachings, through the mines of Malaysia, 
+          to a mountain temple where the abbot <strong>Chian Yi</strong> taught him Northern Shaolin kung fu. 
+          Encouraged to merge everything he had mastered, Jow Lung spent three years in the monastery forging 
+          a completely new system.
+        </p>
+        <p>
+          In 1915, Jow Lung defeated all 100 competitors in an open tournament to become chief trainer 
+          to General Lee Fook Lam's army. With his brothers — known together as the <strong>Five Tigers of Jow Ga</strong> — 
+          they refined the system and built its legendary reputation.
+        </p>
+        <p>
+          Jow Ga is a complete martial art: powerful Hung Gar upper-body mechanics combined with Choy Gar's 
+          deceptive footwork and Northern Shaolin's long-range techniques. Students train hand forms, weapon forms, 
+          grappling, throwing, and the five animal techniques of tiger, leopard, dragon, crane, and snake.
+        </p>
+
+        <hr class="gold-rule" />
+
+        <div class="lineage-chain">
+          <ul class="lineage-list">
+            <li><span class="lineage-num">1st</span><span class="lineage-name">Jow Lung</span><span class="lineage-note">Founder, Guangdong, 1891–1919</span></li>
+            <li><span class="lineage-num">2nd</span><span class="lineage-name">Jow Biu</span><span class="lineage-note">Assumed leadership after Jow Lung's passing</span></li>
+            <li><span class="lineage-num">3rd</span><span class="lineage-name">Lee Ngau</span><span class="lineage-note">Hong Kong school, notable master</span></li>
+            <li><span class="lineage-num">4th</span><span class="lineage-name">Bau Siu Keung</span><span class="lineage-note"></span></li>
+            <li><span class="lineage-num">5th</span><span class="lineage-name">Yip Chi Wah</span><span class="lineage-note">Master to Sifu Raymond</span></li>
+            <li class="current"><span class="lineage-num">6th</span><span class="lineage-name">Sifu Raymond Keung</span><span class="lineage-note">South Africa · "The Dictionary of Jow Ga Forms"</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-visual reveal">
+        <div class="about-img-frame">
+          <div class="corner-ornament tl"></div>
+          <div class="corner-ornament tr"></div>
+          <div class="corner-ornament bl"></div>
+          <div class="corner-ornament br"></div>
+          <img src="photo-ancestors.jpg" alt="Jow Ga masters and traditional weapons" />
+        </div>
+
+        <div style="margin-top:2rem;padding:2rem;background:var(--panel);border:1px solid var(--border);position:relative;">
+          <div class="corner-ornament tl"></div>
+          <div class="corner-ornament br"></div>
+          <p style="font-size:1.1rem;font-style:italic;color:var(--text);line-height:1.7;margin-bottom:0.8rem;">
+            "The style had the head of Hung Gar, the tail of Choy Gar, and the patterns of the tiger and the leopard."
+          </p>
+          <p style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dim);">
+            Description of Jow Ga at its inception, c. 1919
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SIFU RAYMOND ════════════════════════════════════════════════ -->
+<section id="sifu">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">The Master</p>
+      <h2 class="section-title display">Sifu Raymond Keung</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+      </div>
+    </div>
+    <div class="sifu-layout">
+      <div class="sifu-photo reveal">
+        <div class="sifu-photo-frame">
+          <div class="corner-ornament tl"></div>
+          <div class="corner-ornament tr"></div>
+          <div class="corner-ornament bl"></div>
+          <div class="corner-ornament br"></div>
+          <div class="placeholder-img">
+            <span class="ph-icon">⬜</span>
+            <span>Photo — Sifu Raymond</span>
+          </div>
+          <div class="sifu-caption">
+            <h3>Sifu Raymond Keung</h3>
+            <p>Dictionary of Jow Ga Forms</p>
+          </div>
+        </div>
+
+        <div class="sifu-stats">
+          <div class="stat-box">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Years Training</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">6th</span>
+            <span class="stat-label">Generation</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">2003</span>
+            <span class="stat-label">In South Africa</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sifu-content reveal">
+        <blockquote>
+          "I want to teach good, honest people. There's no anger or arrogance. My class is a happy class."
+          <cite>— Sifu Raymond Keung</cite>
+        </blockquote>
+
+        <p>
+          Born in Hong Kong on 24 July 1959, Sifu Raymond began his Jow Ga journey in 1973 — encouraged 
+          by his father to join a kung fu school to build strength and overcome introversion. He found his calling.
+        </p>
+        <p>
+          Under Master Ho Lok, he built the essential foundation: correct body posture, punishing low stances, 
+          and the discipline that defines serious Jow Ga training. His dedication was exceptional. 
+          Seeking to deepen his knowledge, he sought out <strong>Master Yip Chi Wah</strong> — a direct descendant 
+          of Jow Biu's lineage — where he expanded his mastery of hand forms, weapon forms, and set fighting.
+        </p>
+        <p>
+          His remarkable memory led him to become known throughout the Jow Ga community as the 
+          <strong>"Dictionary of Jow Ga Forms"</strong> — a living repository of the art's complete technical heritage. 
+          This knowledge, spanning over 20 hand forms and extensive weapon sets, is what he now passes to his students in South Africa.
+        </p>
+        <p>
+          In 2003 Sifu Raymond immigrated to South Africa with his family, and soon established the 
+          <strong>Jow Ga Kung Fu Athletic Association of South Africa</strong> — a life member and representative 
+          of the International Jow Ga Kuen Federation. He interviews every prospective student personally. 
+          This is not a commercial operation. It is a living tradition.
+        </p>
+        <p>
+          Sifu Raymond also teaches <strong>Tai Chi</strong>, offering students the complementary art of 
+          controlled, meditative movement — the same attention to internal alignment and body mechanics 
+          that underpins his kung fu philosophy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLASSES ══════════════════════════════════════════════════════ -->
+<section id="classes">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title display">Classes</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+      </div>
+    </div>
+
+    <div class="classes-grid reveal">
+      <!-- KUNG FU CARD -->
+      <div class="class-card">
+        <p class="class-card-eyebrow">Traditional · Physical · Complete</p>
+        <h3>Jow Ga Kung Fu</h3>
+        <p class="chinese-subtitle">周家拳</p>
+        <p>
+          Jow Ga is a demanding, full-body system. Every class begins with stretching and an intensive 
+          warm-up. Students develop strength, speed, flexibility, coordination, and stamina. More than 
+          fitness — you develop discipline, self-confidence, and the moral character to navigate real life.
+        </p>
+        <p>
+          Beginners are welcomed regardless of fitness level. Training adapts to you — and the transformation 
+          will come faster than you expect. Students are requested to call ahead before attending their first class.
+        </p>
+
+        <div class="class-tag-list">
+          <span class="class-tag">Hand Forms</span>
+          <span class="class-tag">Weapon Forms</span>
+          <span class="class-tag">Sparring</span>
+          <span class="class-tag">Five Animals</span>
+          <span class="class-tag">All Ages</span>
+          <span class="class-tag">Weekday &amp; Weekend</span>
+        </div>
+
+        <div class="syllabus-wrapper">
+          <p class="syllabus-title">Syllabus Highlights</p>
+          <div class="syllabus-cols">
+            <div class="syllabus-group">
+              <h4>Hand Forms</h4>
+              <ul>
+                <li>Siu Fok Fu Kuen</li>
+                <li>Siu Hung Kuen</li>
+                <li>Law Hon Kuen</li>
+                <li>Say Ping Kuen</li>
+                <li>Chai Jong Kuen</li>
+                <li>Ying Jao Kuen</li>
+                <li>Fu Pao Kuen</li>
+                <li>Man Gi Kuen</li>
+                <li>+ more advanced forms</li>
+              </ul>
+            </div>
+            <div class="syllabus-group">
+              <h4>Weapon Forms</h4>
+              <ul>
+                <li>Bat Gwa Double-Headed Staff</li>
+                <li>Mui Fa Broadsword</li>
+                <li>Mui Fa Spear</li>
+                <li>Double Dagger</li>
+                <li>Butterfly Knife</li>
+                <li>Nine Rings Broadsword</li>
+                <li>Big Fork</li>
+                <li>Dai Bat Gwa Staff</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAI CHI CARD -->
+      <div class="class-card">
+        <p class="class-card-eyebrow">Internal · Meditative · Restorative</p>
+        <h3>Tai Chi</h3>
+        <p class="chinese-subtitle">太極拳</p>
+        <p>
+          Taught by Sifu Raymond alongside Jow Ga, Tai Chi offers the internal counterpart to kung fu's 
+          external power. Rooted in the same understanding of body mechanics, breath, and alignment, 
+          Tai Chi develops balance, mental clarity, and a cultivated internal energy that benefits 
+          practitioners of all ages.
+        </p>
+        <p>
+          Whether you come to Tai Chi as a complement to kung fu training or as a stand-alone practice, 
+          Sifu Raymond's instruction brings the same depth and authenticity to this ancient art. 
+          No prior martial arts experience is required.
+        </p>
+
+        <div class="class-tag-list">
+          <span class="class-tag">Standing Forms</span>
+          <span class="class-tag">Breath Work</span>
+          <span class="class-tag">Balance &amp; Posture</span>
+          <span class="class-tag">All Fitness Levels</span>
+          <span class="class-tag">Seniors Welcome</span>
+        </div>
+
+        <div style="margin-top:2rem;padding:1.5rem;border:1px solid var(--border);background:rgba(200,151,58,0.03);">
+          <p style="font-style:italic;color:var(--text-muted);font-size:0.97rem;margin-bottom:0;">
+            "Hard and soft. External and internal. The two arts are one teaching — different expressions 
+            of the same understanding of the human body and its relationship to force."
+          </p>
+          <p style="margin-top:0.6rem;font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold-dim);">
+            — Sifu Raymond Keung
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schedule bar -->
+    <div class="schedule-bar reveal">
+      <div class="schedule-info">
+        <h3>Class Schedule</h3>
+        <p>Weekday and weekend classes available. New students are requested to call ahead before attending their first session.</p>
+      </div>
+      <div class="schedule-info" style="text-align:right;">
+        <h3>Book Your Place</h3>
+        <p>Contact Bonnie: <a href="tel:0722132478">072 213 2478</a></p>
+      </div>
+      <a href="#contact" class="btn btn-primary">Enquire Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══════════════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">New Students</p>
+      <h2 class="section-title display">What to Expect</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+      </div>
+    </div>
+    <div class="faq-grid reveal">
+      <div class="faq-item">
+        <p class="faq-q">Do I need to be fit to start?</p>
+        <p class="faq-a">Not at all. Sifu Raymond welcomes students of all fitness levels. Regular training will develop your strength, flexibility, and stamina faster than you expect. Start where you are.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Do I need to call before my first class?</p>
+        <p class="faq-a">Yes — new students are asked to call ahead before attending. Sifu Raymond interviews prospective students personally. This is a deliberate part of the tradition, not a barrier.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What should I wear to my first class?</p>
+        <p class="faq-a">Comfortable, loose-fitting clothing that allows free movement. Barefoot or flat martial arts shoes. As you progress you may wish to acquire Fei Yue training shoes — we stock them.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How is Jow Ga different from other kung fu styles?</p>
+        <p class="faq-a">Jow Ga synthesises three complete systems — Hung Gar's powerful striking, Choy Gar's deceptive footwork, and Northern Shaolin's long-range techniques. It is a comprehensive, aggressive, and highly effective art, not a single-dimension style.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What does lineage mean, and why does it matter?</p>
+        <p class="faq-a">Lineage is the unbroken chain of knowledge passed from master to student across generations. Sifu Raymond is a 6th-generation direct descendant of Jow Lung's founding lineage through Jow Biu. What you learn here has been tested and refined over more than a century.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can children and adults train together?</p>
+        <p class="faq-a">Jow Ga is suitable for all ages. Training is structured to challenge each student appropriately. Discipline, respect, and character development are central to the curriculum for younger students and adults alike.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can I do Tai Chi without doing Kung Fu?</p>
+        <p class="faq-a">Absolutely. Tai Chi is taught as a complete practice in its own right. Many students come specifically for Tai Chi — whether for health, balance, stress relief, or internal development. All are welcome.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Is this affiliated with a wider organisation?</p>
+        <p class="faq-a">Yes. Sifu Raymond is a life member and South African representative of the International Jow Ga Kuen Federation, connecting our school to the global Jow Ga family and ensuring authentic lineage continuity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══════════════════════════════════════════════════════ -->
+<section id="gallery">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">The School</p>
+      <h2 class="section-title display">Gallery</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+      </div>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item">
+        <img src="photo-training.jpg" alt="Training in the kwoon" />
+      </div>
+      <div class="gallery-item">
+        <img src="photo-ancestors.jpg" alt="Masters and traditional weapons" />
+      </div>
+      <div class="gallery-item">
+        <img src="photo-liondance.jpeg" alt="Lion dance performance" />
+      </div>
+      <div class="gallery-item">
+        <img src="photo-liondance.jpeg" alt="Lion dance" style="object-position: center 30%;" />
+      </div>
+      <div class="gallery-item">
+        <img src="photo-training.jpg" alt="Kwoon training" style="object-position: left center;" />
+      </div>
+      <div class="gallery-item">
+        <img src="photo-ancestors.jpg" alt="Jow Ga lineage portraits" style="object-position: center 20%;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MERCH ═══════════════════════════════════════════════════════ -->
+<section id="merch">
+  <div class="chinese-watermark">器</div>
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Equipment &amp; Apparel</p>
+      <h2 class="section-title display">Merchandise</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+      </div>
+    </div>
+    <div class="merch-intro reveal">
+      <p>We stock a selection of traditional kung fu equipment, training shoes, and school apparel. 
+      All items can be enquired about through the school directly — contact Bonnie to check availability and pricing.</p>
+    </div>
+
+    <div class="merch-grid reveal">
+      <div class="merch-card">
+        <div class="merch-img">
+          <span class="merch-icon">⚔️</span>
+          <span class="merch-ph-label">Photo coming soon</span>
+        </div>
+        <div class="merch-info">
+          <p class="merch-cat">Weapons</p>
+          <p class="merch-name">Broadswords &amp; Staffs</p>
+          <p class="merch-desc">Traditional kung fu weapons including broadswords, staffs, and butterfly knives used in Jow Ga weapon forms.</p>
+          <a href="#contact" class="merch-enquire">Enquire About This</a>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-img">
+          <span class="merch-icon">👟</span>
+          <span class="merch-ph-label">Photo coming soon</span>
+        </div>
+        <div class="merch-info">
+          <p class="merch-cat">Footwear</p>
+          <p class="merch-name">Fei Yue Training Shoes</p>
+          <p class="merch-desc">The iconic Chinese canvas training shoe — lightweight, flexible sole, preferred by kung fu and tai chi practitioners worldwide.</p>
+          <a href="#contact" class="merch-enquire">Enquire About This</a>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-img">
+          <span class="merch-icon">👕</span>
+          <span class="merch-ph-label">Photo coming soon</span>
+        </div>
+        <div class="merch-info">
+          <p class="merch-cat">Apparel</p>
+          <p class="merch-name">Jow Ga T-Shirts</p>
+          <p class="merch-desc">Official school T-shirts bearing the Jow Ga emblem. Available in multiple sizes for students and supporters.</p>
+          <a href="#contact" class="merch-enquire">Enquire About This</a>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-img">
+          <span class="merch-icon">🥋</span>
+          <span class="merch-ph-label">Photo coming soon</span>
+        </div>
+        <div class="merch-info">
+          <p class="merch-cat">Training Wear</p>
+          <p class="merch-name">Kung Fu Uniforms</p>
+          <p class="merch-desc">Traditional black training uniforms suitable for kung fu and tai chi practice. Required for graded students.</p>
+          <a href="#contact" class="merch-enquire">Enquire About This</a>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-img">
+          <span class="merch-icon">🗡️</span>
+          <span class="merch-ph-label">Photo coming soon</span>
+        </div>
+        <div class="merch-info">
+          <p class="merch-cat">Weapons</p>
+          <p class="merch-name">Spears &amp; Specialty Weapons</p>
+          <p class="merch-desc">Advanced weapon forms including spears and specialty weapons for experienced students. Enquire for current stock.</p>
+          <a href="#contact" class="merch-enquire">Enquire About This</a>
+        </div>
+      </div>
+
+      <div class="merch-card">
+        <div class="merch-img">
+          <span class="merch-icon">📿</span>
+          <span class="merch-ph-label">Photo coming soon</span>
+        </div>
+        <div class="merch-info">
+          <p class="merch-cat">Accessories</p>
+          <p class="merch-name">Training Equipment</p>
+          <p class="merch-desc">Supporting training gear including hand wraps, training bags, and other equipment. Ask about current availability.</p>
+          <a href="#contact" class="merch-enquire">Enquire About This</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title display">Contact</h2>
+      <div class="section-divider">
+        <div class="section-divider-line"></div>
+        <div class="section-divider-dot"></div>
+      </div>
+    </div>
+    <div class="contact-layout reveal">
+      <div class="contact-info">
+        <p>
+          Interested in joining? New students are warmly welcomed. Sifu Raymond takes the time to 
+          meet every prospective student personally — call ahead before attending your first class.
+        </p>
+
+        <ul class="contact-detail-list">
+          <li>
+            <div class="contact-detail-icon">✆</div>
+            <div class="contact-detail-content">
+              <strong>Phone / WhatsApp</strong>
+              <a href="tel:0722132478">072 213 2478</a>
+              <span style="display:block;font-size:0.85rem;color:var(--text-faint);margin-top:2px;">Contact Bonnie</span>
+            </div>
+          </li>
+          <li>
+            <div class="contact-detail-icon">✉</div>
+            <div class="contact-detail-content">
+              <strong>Email</strong>
+              <a href="mailto:info@jowga.co.za">info@jowga.co.za</a>
+            </div>
+          </li>
+          <li>
+            <div class="contact-detail-icon">⊕</div>
+            <div class="contact-detail-content">
+              <strong>Organisation</strong>
+              <span>Jow Ga Kung Fu Athletic Association of South Africa</span>
+              <span style="display:block;font-size:0.85rem;color:var(--text-faint);margin-top:2px;">International Jow Ga Kuen Federation — Life Member</span>
+            </div>
+          </li>
+          <li>
+            <div class="contact-detail-icon">◈</div>
+            <div class="contact-detail-content">
+              <strong>Schedule</strong>
+              <span>Weekday &amp; weekend classes available</span>
+              <span style="display:block;font-size:0.85rem;color:var(--text-faint);margin-top:2px;">Call to confirm current timetable</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="contact-form-area">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="Your number" />
+        </div>
+        <div class="form-group">
+          <label>I'm Interested In</label>
+          <select>
+            <option value="">— Select —</option>
+            <option>Jow Ga Kung Fu Classes</option>
+            <option>Tai Chi Classes</option>
+            <option>Both Kung Fu &amp; Tai Chi</option>
+            <option>Merchandise</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us a little about yourself and what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;border:none;">Send Enquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="logo-dark.png" alt="Jow Ga Kung Fu South Africa" style="height:52px;width:auto;opacity:0.75;" />
+    </div>
+    <div class="footer-meta">
+      <div>Sifu Raymond Keung · 6th Generation Lineage</div>
+      <div style="margin-top:0.3rem;">© 2025 Jow Ga Kung Fu South Africa. All rights reserved.</div>
+      <div style="margin-top:0.3rem;font-size:0.75rem;">Contact: <a href="tel:0722132478" style="color:var(--gold-dim);text-decoration:none;">072 213 2478</a> (Bonnie)</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Nav mobile toggle
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+
+  // ── Nav active state on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold)' : '';
+    });
+  }, { passive: true });
+
+  // ── Stagger reveal children inside grid containers
+  document.querySelectorAll('.faq-grid, .merch-grid, .gallery-grid').forEach(grid => {
+    grid.querySelectorAll(':scope > *').forEach((child, i) => {
+      child.style.transitionDelay = (i * 0.07) + 's';
+    });
+  });
+</script>
+
+</body>
+</html>
