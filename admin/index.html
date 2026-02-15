@@ -7,7 +7,14 @@
   <title>Jow Ga Admin</title>
 </head>
 <body>
-  <!-- Decap CMS -->
+  <script>
+    // Handle Netlify Identity redirect with invite token
+    if (window.location.hash && window.location.hash.indexOf('invite_token') > -1) {
+      var token = window.location.hash;
+      window.location = '/admin/index.html' + token;
+    }
+  </script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
