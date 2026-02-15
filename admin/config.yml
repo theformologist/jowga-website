@@ -1,0 +1,119 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Allows editorial workflow (draft/review/publish)
+publish_mode: editorial_workflow
+
+# Where uploaded images get stored
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+
+  # ─── SITE SETTINGS ───────────────────────────────────────────────
+  - name: "settings"
+    label: "Site Settings"
+    files:
+
+      - name: "contact"
+        label: "Contact Details"
+        file: "_data/contact.json"
+        fields:
+          - { label: "Phone (Bonnie)", name: "phone", widget: "string", hint: "Displayed in the contact section and nav" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "WhatsApp Number", name: "whatsapp", widget: "string", hint: "Include country code e.g. +27722132478" }
+          - { label: "School Address", name: "address", widget: "text" }
+          - { label: "Google Maps Link", name: "maps_url", widget: "string", required: false }
+
+      - name: "schedule"
+        label: "Class Schedule"
+        file: "_data/schedule.json"
+        fields:
+          - label: "Schedule Note"
+            name: "note"
+            widget: "string"
+            hint: "Short note shown under the schedule e.g. 'New students please call ahead'"
+          - label: "Class Times"
+            name: "times"
+            widget: "list"
+            fields:
+              - { label: "Day", name: "day", widget: "string", hint: "e.g. Monday, Tuesday & Thursday" }
+              - { label: "Time", name: "time", widget: "string", hint: "e.g. 6:30pm – 8:00pm" }
+              - { label: "Class Type", name: "type", widget: "select", options: ["Kung Fu", "Tai Chi", "Both"] }
+
+  # ─── SIFU BIO ────────────────────────────────────────────────────
+  - name: "sifu"
+    label: "Sifu Raymond"
+    files:
+
+      - name: "bio"
+        label: "Biography"
+        file: "_data/sifu.json"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Title / Tagline", name: "tagline", widget: "string", hint: "e.g. Dictionary of Jow Ga Forms" }
+          - { label: "Photo", name: "photo", widget: "image", required: false }
+          - { label: "Years Training", name: "years_training", widget: "string", hint: "e.g. 50+" }
+          - { label: "Generation", name: "generation", widget: "string", hint: "e.g. 6th" }
+          - { label: "South Africa Since", name: "sa_since", widget: "string", hint: "e.g. 2003" }
+          - label: "Featured Quote"
+            name: "quote"
+            widget: "text"
+            hint: "The pull quote shown in the Sifu section"
+          - label: "Biography (full)"
+            name: "bio"
+            widget: "markdown"
+            hint: "Full biography paragraphs"
+
+  # ─── MERCHANDISE ─────────────────────────────────────────────────
+  - name: "merch"
+    label: "Merchandise"
+    label_singular: "Merch Item"
+    folder: "_merch"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Item Name", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Weapons", "Footwear", "Apparel", "Training Wear", "Accessories"] }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Available", name: "available", widget: "boolean", default: true, hint: "Uncheck to hide this item from the site" }
+      - { label: "Enquiry Note", name: "enquiry_note", widget: "string", required: false, hint: "Optional note e.g. 'Limited sizes available'" }
+
+  # ─── GALLERY ─────────────────────────────────────────────────────
+  - name: "gallery"
+    label: "Gallery"
+    label_singular: "Photo"
+    folder: "_gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Caption", name: "title", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image" }
+      - { label: "Sort Order", name: "order", widget: "number", default: 99, hint: "Lower numbers appear first" }
+
+  # ─── FAQ ─────────────────────────────────────────────────────────
+  - name: "faq"
+    label: "FAQ"
+    label_singular: "FAQ Item"
+    folder: "_faq"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Question", name: "title", widget: "string" }
+      - { label: "Answer", name: "answer", widget: "text" }
+      - { label: "Sort Order", name: "order", widget: "number", default: 99 }
+
+  # ─── ANNOUNCEMENTS ───────────────────────────────────────────────
+  - name: "announcements"
+    label: "Announcements"
+    label_singular: "Announcement"
+    folder: "_announcements"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Message", name: "body", widget: "markdown" }
+      - { label: "Show on site", name: "published", widget: "boolean", default: true }
