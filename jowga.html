@@ -73,7 +73,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 4vw;
-      height: 68px;
+      height: 80px;
       background: linear-gradient(180deg, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.85) 100%);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(200,151,58,0.15);
@@ -101,7 +101,7 @@
 
     .nav-links a {
       font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
+      font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -109,6 +109,7 @@
       text-decoration: none;
       transition: color 0.25s;
       position: relative;
+      padding: 8px 0; 
     }
 
     .nav-links a::after {
@@ -148,7 +149,7 @@
       background:
         linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.4) 40%, rgba(8,8,8,0.75) 100%),
         radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139,26,26,0.18) 0%, transparent 70%),
-        url('photo-training.jpg') center center / cover no-repeat;
+        url('images/photo-training.jpg') center center / cover no-repeat;
     }
 
     /* Decorative vertical lines */
@@ -1270,7 +1271,7 @@
 <!-- ═══ NAV ═══════════════════════════════════════════════════════ -->
 <nav>
   <a href="#hero" class="nav-logo">
-    <img src="logo-dark.png" alt="Jow Ga Kung Fu South Africa" style="height:44px;width:auto;display:block;" />
+    <img src="images/logo-dark.svg" alt="Jow Ga Kung Fu South Africa" style="height:60px;width:auto;display:block;" />
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About Jow Ga</a></li>
@@ -1291,7 +1292,7 @@
   <div class="hero-lines"></div>
   <!-- Emblem watermark -->
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding-right:8vw;pointer-events:none;z-index:1;">
-    <img src="emblem.png" alt="" style="width:min(420px,45vw);opacity:0.07;filter:brightness(2);" />
+    <img src="images/emblem.png" alt="" style="width:min(420px,45vw);opacity:0.07;filter:brightness(2);" />
   </div>
   <div class="hero-content">
     <p class="hero-lineage">Fifth Generation Lineage · Jow Biu Lineage · Est. South Africa 2003</p>
@@ -1370,7 +1371,7 @@
           <div class="corner-ornament tr"></div>
           <div class="corner-ornament bl"></div>
           <div class="corner-ornament br"></div>
-          <img src="photo-ancestors.jpg" alt="Jow Ga masters and traditional weapons" />
+          <img src="images/photo-ancestors.jpg" alt="Jow Ga masters and traditional weapons" />
         </div>
 
         <div style="margin-top:2rem;padding:2rem;background:var(--panel);border:1px solid var(--border);position:relative;">
@@ -1653,22 +1654,22 @@
     </div>
     <div class="gallery-grid reveal">
       <div class="gallery-item">
-        <img src="photo-training.jpg" alt="Training in the kwoon" />
+        <img src="images/photo-training.jpg" alt="Training in the kwoon" />
       </div>
       <div class="gallery-item">
-        <img src="photo-ancestors.jpg" alt="Masters and traditional weapons" />
+        <img src="images/photo-ancestors.jpg" alt="Masters and traditional weapons" />
       </div>
       <div class="gallery-item">
-        <img src="photo-liondance.jpeg" alt="Lion dance performance" />
+        <img src="images/photo-liondance.jpeg" alt="Lion dance performance" />
       </div>
       <div class="gallery-item">
-        <img src="photo-liondance.jpeg" alt="Lion dance" style="object-position: center 30%;" />
+        <img src="images/photo-liondance.jpeg" alt="Lion dance" style="object-position: center 30%;" />
       </div>
       <div class="gallery-item">
-        <img src="photo-training.jpg" alt="Kwoon training" style="object-position: left center;" />
+        <img src="images/photo-training.jpg" alt="Kwoon training" style="object-position: left center;" />
       </div>
       <div class="gallery-item">
-        <img src="photo-ancestors.jpg" alt="Jow Ga lineage portraits" style="object-position: center 20%;" />
+        <img src="images/photo-ancestors.jpg" alt="Jow Ga lineage portraits" style="object-position: center 20%;" />
       </div>
     </div>
   </div>
@@ -1804,7 +1805,7 @@
             <div class="contact-detail-icon">✉</div>
             <div class="contact-detail-content">
               <strong>Email</strong>
-              <a href="mailto:info@jowga.co.za">info@jowga.co.za</a>
+              <a href="/cdn-cgi/l/email-protection#f79e999198b79d98809096d99498d98d96"><span class="__cf_email__" data-cfemail="721b1c141d32181d0515135c111d5c0813">[email&#160;protected]</span></a>
             </div>
           </li>
           <li>
@@ -1864,7 +1865,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">
-      <img src="logo-dark.png" alt="Jow Ga Kung Fu South Africa" style="height:52px;width:auto;opacity:0.75;" />
+      <img src="images/logo-dark.svg" alt="Jow Ga Kung Fu South Africa" style="height:52px;width:auto;opacity:0.75;" />
     </div>
     <div class="footer-meta">
       <div>Sifu Raymond Keung · 6th Generation Lineage</div>
@@ -1874,7 +1875,7 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -1912,12 +1913,4 @@
   }, { passive: true });
 
   // ── Stagger reveal children inside grid containers
-  document.querySelectorAll('.faq-grid, .merch-grid, .gallery-grid').forEach(grid => {
-    grid.querySelectorAll(':scope > *').forEach((child, i) => {
-      child.style.transitionDelay = (i * 0.07) + 's';
-    });
-  });
-</script>
-
-</body>
-</html>
+  documen
