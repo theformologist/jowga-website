@@ -1253,3 +1253,5 @@
 
       .syllabus-cols { grid-template-columns: 1fr; }
     }
+
+    section { scroll-margin-top: 90px; }

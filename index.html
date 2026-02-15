@@ -35,10 +35,10 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-lines"></div>
-  <!-- Emblem watermark -->
+  <!-- Emblem watermark>
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding-right:8vw;pointer-events:none;z-index:1;">
     <img src="images/emblem.png" alt="" style="width:min(420px,45vw);opacity:0.07;filter:brightness(2);" />
-  </div>
+  </div -->
   <div class="hero-content">
     <p class="hero-lineage">Fifth Generation Lineage · Jow Biu Lineage · Est. South Africa 2003</p>
     <div class="hero-chinese">中外周家</div>
@@ -629,7 +629,8 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
   // ── Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -640,31 +641,32 @@
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
   reveals.forEach(el => observer.observe(el));
 
   // ── Nav mobile toggle
   const toggle = document.getElementById('navToggle');
   const links  = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
-  });
-  links.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => links.classList.remove('open'));
-  });
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 
   // ── Nav active state on scroll
   const sections = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.nav-links a');
+  const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.id;
-    });
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
     navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--gold)' : '';
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
     });
   }, { passive: true });
 
-  // ── Stagger reveal children inside grid containers
-  documen
+  // ── Optional: stagger direct children
+  document.querySelectorAll('.reveal').forEach((container) => {
+    const kids = container.querySelectorAll(':scope > *');
+    kids.forEach((k, i) => { k.style.transitionDelay = `${i * 80}ms`; });
+  });
+</script>
+
+</body>
+</html>
