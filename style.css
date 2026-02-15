@@ -65,6 +65,7 @@
       background: linear-gradient(180deg, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.85) 100%);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(200,151,58,0.15);
+      height: 80px;
     }
 
     .nav-logo {
@@ -89,7 +90,7 @@
 
     .nav-links a {
       font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
+      font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -97,6 +98,7 @@
       text-decoration: none;
       transition: color 0.25s;
       position: relative;
+      padding: 8px 0;
     }
 
     .nav-links a::after {
@@ -136,7 +138,7 @@
       background:
         linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.4) 40%, rgba(8,8,8,0.75) 100%),
         radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139,26,26,0.18) 0%, transparent 70%),
-        url('photo-training.jpg') center center / cover no-repeat;
+        url('images/photo-training.jpg') center center / cover no-repeat;
     }
 
     /* Decorative vertical lines */
@@ -1146,7 +1148,7 @@
 
     .footer-logo-text {
       font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
+      font-size: 1.2rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -1154,7 +1156,7 @@
     }
 
     .footer-meta {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text-muted);
       text-align: right;
       line-height: 1.8;
