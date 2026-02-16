@@ -1245,7 +1245,6 @@
       .contact-layout { grid-template-columns: 1fr; }
 
       .sifu-layout { grid-template-columns: 1fr; }
-      .sifu-photo-frame { aspect-ratio: 3/2; }
 
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
