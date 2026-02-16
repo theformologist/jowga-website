@@ -1223,16 +1223,17 @@
         display: none;
         position: fixed;
         inset: 0;
-        background: rgba(8,8,8,0.98);
+        background: var(--black);
         flex-direction: column;
         align-items: center;
         justify-content: center;
         gap: 2.5rem;
-        z-index: 850;
+        z-index: 950;
+        padding-top: 100px;
       }
       .nav-links.open { display: flex; }
-      .nav-links a { font-size: 0.9rem; letter-spacing: 0.2em; }
-      .nav-toggle { display: block; z-index: 901; }
+      .nav-links a { font-size: 1rem; letter-spacing: 0.2em; }
+      .nav-toggle { display: block; z-index: 951; }
 
       .about-grid,
       .sifu-layout,
