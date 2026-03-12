@@ -33,7 +33,10 @@
 
 <!-- ═══ HERO ═══════════════════════════════════════════════════════ -->
 <section id="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+    <div class="hero-bg-slide" id="hero-slide-a"></div>
+    <div class="hero-bg-slide" id="hero-slide-b"></div>
+  </div>
   <div class="hero-lines"></div>
   <!-- Emblem watermark>
   <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:flex-end;padding-right:8vw;pointer-events:none;z-index:1;">
@@ -816,6 +819,55 @@
       document.body.style.overflow = '';
     }
   });
+
+  // ── Hero Background Slideshow
+  const heroImages = [
+    'images/JGKFSA-104.jpg',
+    'images/JGKFSA-118.jpg',
+    'images/JGKFSA-122.jpg',
+    'images/JGKFSA-120.jpg',
+    'images/photo-ancestors.jpg',
+    'images/photo-liondance.jpeg',
+    'images/photo-training.jpg'
+  ];
+
+  const slideA = document.getElementById('hero-slide-a');
+  const slideB = document.getElementById('hero-slide-b');
+  let heroIndex = 0;
+  let isSlideAActive = true;
+
+  function preloadHeroImage(src) {
+    const img = new Image();
+    img.src = src;
+  }
+
+  // Set initial image
+  slideA.style.backgroundImage = `url('${heroImages[0]}')`;
+  slideA.classList.add('active');
+
+  // Preload second image immediately
+  preloadHeroImage(heroImages[1]);
+
+  setInterval(() => {
+    heroIndex = (heroIndex + 1) % heroImages.length;
+    const nextSrc = heroImages[heroIndex];
+
+    if (isSlideAActive) {
+      slideB.style.backgroundImage = `url('${nextSrc}')`;
+      slideB.classList.add('active');
+      slideA.classList.remove('active');
+    } else {
+      slideA.style.backgroundImage = `url('${nextSrc}')`;
+      slideA.classList.add('active');
+      slideB.classList.remove('active');
+    }
+
+    isSlideAActive = !isSlideAActive;
+
+    // Preload the image after next
+    const preloadIndex = (heroIndex + 1) % heroImages.length;
+    preloadHeroImage(heroImages[preloadIndex]);
+  }, 7000);
 </script>
 
 </body>
