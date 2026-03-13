@@ -126,6 +126,7 @@
     #hero {
       position: relative;
       min-height: 100vh;
+      min-height: 100svh;
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -154,6 +155,7 @@
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
+      background-attachment: scroll;
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
       z-index: 1;
@@ -1241,6 +1243,80 @@
       user-select: none;
     }
 
+    /* ─── DIT DA ─── */
+    #ditda {
+      position: relative;
+      background: var(--black);
+    }
+
+    .ditda-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+      align-items: start;
+    }
+
+    .ditda-subheading {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 2rem 0 1rem;
+    }
+
+    .ditda-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem;
+    }
+
+    .ditda-list li {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .ditda-list li::before {
+      content: '—';
+      color: var(--gold);
+      margin-right: 0.75rem;
+    }
+
+    .ditda-session-card {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      background: var(--panel);
+      position: relative;
+    }
+
+    .ditda-session-duration {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .ditda-session-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .ditda-booking-note {
+      font-size: 0.875rem;
+      color: var(--text-faint);
+      margin-top: 1.5rem;
+    }
+
+    .ditda-booking-note a {
+      color: var(--gold);
+    }
+
     /* ─── MOBILE NAV ─── */
     @media (max-width: 768px) {
       .nav-links {
@@ -1264,6 +1340,7 @@
       .about-grid,
       .sifu-layout,
       .classes-grid,
+      .ditda-layout,
       .faq-grid,
       .merch-grid,
       .contact-layout { grid-template-columns: 1fr; }
